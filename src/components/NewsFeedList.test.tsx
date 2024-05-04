@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NewsFeedList from '../../src/components/NewsFeedList';
-import FeedItem from '../../src/domain/feedItem';
+import NewsFeedList from './NewsFeedList';
+import FeedItem from '../domain/feedItem';
 
 // NewsFeedItem コンポーネントをモック化
 jest.mock('../../src/components/NewsFeedItem', () => {

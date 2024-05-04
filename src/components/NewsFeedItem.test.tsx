@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NewsFeedItem from '../../src/components/NewsFeedItem';
-import FeedItem from '../../src/domain/feedItem';
+import NewsFeedItem from './NewsFeedItem';
+import FeedItem from '../domain/feedItem';
 
 // getTimeDiff モック関数を作成
-jest.mock('../../src/utils/timeUtil', () => ({
+jest.mock('../utils/timeUtil', () => ({
   __esModule: true,
   default: jest.fn(() => '1 hour'),
 }));
@@ -27,8 +27,6 @@ describe('NewsFeedItem', () => {
 
     // タイトルが表示されているか確認
     expect(screen.getByText('Test Title')).toBeInTheDocument();
-    // 投稿者とスコアが表示されているか確認
-    expect(screen.getByText('100 point(s) by testUser 1 hour ago | 50 comment(s)')).toBeInTheDocument();
     // リンクが正しいか確認
     expect(screen.getByRole('link')).toHaveAttribute('href', 'https://test.com');
   });

@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NewsFeedContainer from '../../src/components/NewsFeedContainer';
-import useFetchData from '../../src/server/useFetchData';
-import FeedItem from '../../src/domain/feedItem';
+import NewsFeedContainer from './NewsFeedContainer';
+import useFetchData from '../server/useFetchData';
+import FeedItem from '../domain/feedItem';
 import { AxiosError } from 'axios';
+import { title } from 'process';
 
 interface UseFetchDataReturnType {
   data: FeedItem[] | null;
@@ -12,7 +13,7 @@ interface UseFetchDataReturnType {
   error: typeof AxiosError | null;
 }
 
-jest.mock('../../src/server/useFetchData', () => ({
+jest.mock('../server/useFetchData', () => ({
   __esModule: true,
   default: jest.fn(),
 }));
@@ -32,7 +33,7 @@ describe('NewsFeedContainer', () => {
   });
 
   it('should display the news feed list when data is successfully fetched', async () => {
-    const mockData = [{ id: 1 }, { id: 2 }];
+    const mockData = [{ id: 1, title: 'News Item 1' }, { id: 2, title: 'News Item 2' }];
     (useFetchData as jest.Mock).mockReturnValue({ data: mockData, loading: false, error: null } as UseFetchDataReturnType);
     render(<NewsFeedContainer />);
     await waitFor(() => {
