@@ -21,7 +21,7 @@ interface FeedItem {
     title: string;
   
     /** URL */
-    url: string;
+    url?: string;
 }
 
 export default FeedItem;

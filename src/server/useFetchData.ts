@@ -5,7 +5,7 @@ import FeedItem from '../domain/feedItem';
 function useFetchData(sentinelRef: React.RefObject<HTMLDivElement>) {
   const [data, setData] = useState<FeedItem[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<AxiosError | null>(null);
+  const [error, setError] = useState<typeof AxiosError | null>(null);
   const keyListCache = useRef<number[] | null>(null);
   const startCount = useRef<number | null>(null);
 
