@@ -50,3 +50,18 @@ preact自体は馴染んでいないので、選択肢から外していまし�
 npx create-react-app my-app --template typescript
 ```
 
+- [x] UIライブラリは使用しないこと(material designや、他社のui componentなど)、css framework(tailwindやstyled-componentsなど)を利用することは可
+
+レスポンシブデザインなど簡単に実装できるtailwindを利用しています。
+
+CSSを書く経験が浅いので、「使えるものは使う」ということにしました。
+
+styled-componentsに関しては、CSS in JSは比較的に慣れていないので使いませんでした。今後はチャレンジしてみたいです。
+
+### UI要件
+
+- [x] APIでデータの取得が完了するまでの間、Loading Animationまたはicnを表示すること
+
+こちらはAPIからの初回読み込みだけでなく、後出するInfinite scrollingにも使えるように、ダミーのNews ItemをLoading Animationとして実装しました。
+
+
