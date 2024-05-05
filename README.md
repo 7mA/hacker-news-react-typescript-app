@@ -34,11 +34,13 @@ HackerNewsのAPIについてはこちら：https://github.com/HackerNews/API
 ### 課題制限
 
 - [x] react(preact可)の利用は必須, next.jsやcreate-react-appなどを利用することも可
+
 ここはcreate-react-appを使ってreactプロジェクトを立ち上げました。
 なぜcreate-react-appを使うというと、今回の課題はSPA寄りなので、手軽にreactプロジェクトを作れるcreate-react-appにしました。
 preact自体は馴染んでいないので、選択肢から外していました。
 
 - [x] typescriptの利用は必須
+
 言うまでもなく、typescriptを利用しています。右側の`Languages`で一目瞭然ですね。
 ちなみにcreate-react-appを使ってtypescript利用のReactプロジェクトを立ち上げることができます。
 ```shell
