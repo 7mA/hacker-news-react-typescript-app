@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# Hacker　News　Feed Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 概要
 
-## Available Scripts
+[WealthPark様が公開したフロントエンドコーディングテスト](https://note.com/takahirofujii/n/n7e559422cc66)を解いてみました。
 
-In the project directory, you can run:
+記事にもありますが、課題は「Hacker NewsのAPIを利用して、newsのリストを実装すること」とのことなので、試しに解答例として作ってみました。
 
-### `npm start`
+HackerNewsのAPIについてはこちら：https://github.com/HackerNews/API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 要件
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+記事に公開されている要件や制限を抜粋します。
 
-### `npm test`
+**課題制限**：
+- react(preact可)の利用は必須, next.jsやcreate-react-appなどを利用することも可
+- typescriptの利用は必須
+- UIライブラリは使用しないこと(material designや、他社のui componentなど)、css framework(tailwindやstyled-componentsなど)を利用することは可
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**UI要件**：
+- APIでデータの取得が完了するまでの間、Loading Animationまたはicnを表示すること
+- 初回ロードでは100件のデータを表示すること
+- 後はデザインのラフ画に従い実装(ただし、デザインは比較的自由度高い
 
-### `npm run build`
+**任意要件**：
+- Infinite scrolling または pagenation
+- Performanceの追求
+- 綺麗なUI
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 要件チェックリスト
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+まずは課題解答として、上記要件に対して達成状況及び考え方をチェックリストとコメントのセットの形でメモしておきます。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 課題制限
 
-### `npm run eject`
+- [x]react(preact可)の利用は必須, next.jsやcreate-react-appなどを利用することも可
+ここはcreate-react-appを使ってreactプロジェクトを立ち上げました。
+なぜcreate-react-appを使うというと、今回の課題はSPA寄りなので、手軽にreactプロジェクトを作れるcreate-react-appにしました。
+preact自体は馴染んでいないので、選択肢から外していました。
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [x]typescriptの利用は必須
+言うまでもなく、typescriptを利用しています。右側の`Languages`で一目瞭然ですね。
+ちなみにcreate-react-appを使ってtypescript利用のReactプロジェクトを立ち上げることができます。
+```shell
+npx create-react-app my-app --template typescript
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
