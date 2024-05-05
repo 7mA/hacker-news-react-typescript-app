@@ -2,6 +2,8 @@
 
 ## 概要
 
+URL: https://7ma.github.io/hacker-news-react-typescript-app/
+
 [WealthPark様が公開したフロントエンドコーディングテスト](https://note.com/takahirofujii/n/n7e559422cc66)を解いてみました。
 
 記事にもありますが、課題は「Hacker NewsのAPIを利用して、newsのリストを実装すること」とのことなので、試しに解答例として作ってみました。
