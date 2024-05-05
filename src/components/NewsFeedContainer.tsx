@@ -3,7 +3,7 @@ import NewsFeedList from './NewsFeedList';
 import useFetchData from '../server/useFetchData';
 import NewsFeedLoading from './NewsFeedLoading';
 
-const NewsFeedContainer = () => {
+const NewsFeedContainer: React.FC = () => {
     const sentinelRef = useRef<HTMLDivElement>(null);
     const { data, loading, error } = useFetchData(sentinelRef);
 

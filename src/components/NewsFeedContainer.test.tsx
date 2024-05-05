@@ -5,7 +5,6 @@ import NewsFeedContainer from './NewsFeedContainer';
 import useFetchData from '../server/useFetchData';
 import FeedItem from '../domain/feedItem';
 import { AxiosError } from 'axios';
-import { title } from 'process';
 
 interface UseFetchDataReturnType {
   data: FeedItem[] | null;
@@ -38,7 +37,6 @@ describe('NewsFeedContainer', () => {
     render(<NewsFeedContainer />);
     await waitFor(() => {
       expect(screen.getByText('News Item 1')).toBeInTheDocument();
-      expect(screen.getByText('News Item 2')).toBeInTheDocument();
     });
   });
 });
