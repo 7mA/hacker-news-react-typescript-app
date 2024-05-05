@@ -1,4 +1,4 @@
-# Hacker　News　Feed Web Application
+# Hacker News Feed Web Application
 
 ## 概要
 
