@@ -130,7 +130,7 @@ Dummy News Itemが3つあるので、コンポーネントにしたいんです�
 
 <img width="472" alt="スクリーンショット 2024-05-06 13 59 24" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/fd789eae-880a-40b7-8102-0e749d7001b2">
 
-これを回避すべく、ユニークなidを持つItemコンポーネントに[React.memo](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedItem.tsx#L9)を利用します。これによって親のListコンポーネントが再レンダリングしても、idが変わっていないItemコンポーネントは再レンダリングせずに済みます。
+これを回避すべく、ユニークなidを持つItemコンポーネントに[React.memo](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedItem.tsx#L9)を導入します。これによって親のListコンポーネントが再レンダリングしても、idが変わっていないItemコンポーネントは再レンダリングせずに済みます。
 
 <img width="331" alt="スクリーンショット 2024-05-06 14 00 18" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/4f60b97b-ebe3-4eb6-93ce-6014363cf602">
 
