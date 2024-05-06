@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 import FeedItem from '../domain/feedItem';
 
 function useFetchData(sentinelRef: React.RefObject<HTMLDivElement>) {
-  const [data, setData] = useState<FeedItem[] | null>(null);
+  const [data, setData] = useState<FeedItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<typeof AxiosError | null>(null);
   const keyListCache = useRef<number[] | null>(null);
@@ -48,6 +48,18 @@ function useFetchData(sentinelRef: React.RefObject<HTMLDivElement>) {
   };
 
   useEffect(() => {
+    fetchKeyList().then(() => {
+      if (!startCount.current) {
+        startCount.current = 0;
+      }
+      while (startCount.current < firstViewSize) {
+        fetchData(startCount.current);
+        startCount.current += pageSize;
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       if (entries[0].isIntersecting && !loading && startCount.current && keyListCache.current?.length) {
         if (startCount.current < keyListCache.current?.length) {
@@ -58,32 +70,18 @@ function useFetchData(sentinelRef: React.RefObject<HTMLDivElement>) {
         }
       }
     };
-  
+
     const observer = new IntersectionObserver(observerCallback);
     if (sentinelRef.current) {
       observer.observe(sentinelRef.current);
     }
-  
+
     return () => {
       if (sentinelRef.current) {
         observer.unobserve(sentinelRef.current);
       }
     };
-  }, [loading, sentinelRef])
-
-  useEffect(() => {
-    fetchKeyList().then(() => {
-      if (!startCount.current) {
-        startCount.current = 0;
-      }
-      while (startCount.current < firstViewSize) {
-        fetchData(startCount.current);
-        startCount.current += pageSize;
-      }
-    });
-    
-    
-  }, []);
+  }, [loading, sentinelRef]);
 
   return { data, loading, error };
 }
