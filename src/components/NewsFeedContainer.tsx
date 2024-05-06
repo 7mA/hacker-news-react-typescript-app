@@ -12,7 +12,7 @@ const NewsFeedContainer: React.FC = () => {
             {data && <NewsFeedList items={data} />}
             {loading && <NewsFeedLoading />}
             {error && <div>Error: {error.message}</div>}
-            <div ref={sentinelRef}></div>
+            {!loading && <div ref={sentinelRef}></div>}
         </div>
     );
 };
