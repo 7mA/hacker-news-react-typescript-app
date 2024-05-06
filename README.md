@@ -90,31 +90,31 @@ Dummy News Itemが3つあるので、コンポーネントにしたいんです�
 
 これによって、初めから100件を表示することではないのですが、初回ロード自体は一貫して進むので、要件に満たせているのではないかと思います。その同時に、1回目の20件がロードできたらファーストビューに中身が埋まりますので、待たされる感もだいぶ解消されます。
 
-- [ ] 後はデザインのラフ画に従い実装(ただし、デザインは比較的自由度高い
+- [ ] **後はデザインのラフ画に従い実装(ただし、デザインは比較的自由度高い**
 
 実は記事でラフ画が公開されていないので、従えているかどうかはなんとも言えません。ただデザインは比較的自由度が高いとのことなので、今回はこだわりがなくシンプルに作りました。
 
 ### 任意要件
 
-- [x] Infinite scrolling または pagenation
+- [x] **Infinite scrolling または pagenation**
 
 すでに何度か言及しましたが、今回は[Infinite scrolling](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/server/useFetchData.ts#L61-L82)を採用しています。
 
-リスト末尾にあるsentinelRefの表示をトリガーにしています。
+リスト末尾にある[sentinelRef](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedContainer.tsx#L15)の表示をトリガーにしています。
 
-- [x] Performanceの追求
+- [x] **Performanceの追求**
 
 自分の開発環境はWeb Vitals計測ツールを利用しているので、今回に限らずにCore Web Vitalsの数字を常に目にします。
 
-今回会った一番大きなパフォーマンス課題はやはりAPIの呼び出しに時間がかかりすぎて、News List ItemのLCP (Largest Contentful Paint) が大きすぎる問題でした。ただ、前述した分割ロードを導入すると解消されています。
+今回会った一番大きなパフォーマンス課題はやはり詳細APIの呼び出しに時間がかかりすぎて、News List ItemのLCP (Largest Contentful Paint) が5000ms以上で大きすぎてユーザを待たされる問題でした。ただ、前述した分割ロードを導入すると解消されています。
 
 そのほかには特に改善すべきの指標がありません。
 
 <img width="334" alt="スクリーンショット 2024-05-06 10 02 57" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/bf891388-dc3b-4a36-be73-2bf2dbe242ec">
 
-- [ ] 綺麗なUI
+- [ ] **綺麗なUI**
 
-これは主観的な要件だと思うのでなんとも言えないと思います。ただし、自分自身はデザイン得意ではないので、おそらくデザイナー並みの腕がなければ満たすことがないと思います。
+これは主観的な要件だと思うのでなんとも言えないと思います。ただし、自分自身はデザイン得意ではなくデザイン要素はほとんどtailwindから取ってきたものなので、おそらくデザイナー並みの腕がなければ満たすことがないと思います。
 
 ---
 
