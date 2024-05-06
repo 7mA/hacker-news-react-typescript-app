@@ -108,9 +108,11 @@ Dummy News Itemが3つあるので、コンポーネントにしたいんです�
 
 自分の開発環境はWeb Vitals計測ツールを利用しているので、今回に限らずにCore Web Vitalsの数字を常に目にします。
 
-今回会った一番大きなパフォーマンス課題はやはり詳細APIの呼び出しに時間がかかりすぎて、News List ItemのLCP (Largest Contentful Paint) が過大になりうる問題でした。ただ、前述した分割ロードを導入することで、ファーストビューの範囲内に時間がかかって描画する要素がなくなったので改善されております。
+今回会った一番大きなパフォーマンス課題はやはり詳細APIの呼び出しに時間がかかりすぎて、News List ItemのLCP (Largest Contentful Paint) が過大になりうる問題でした。
 
-そのほかには特に改善すべきの指標がありません。
+<img width="1020" alt="スクリーンショット 2024-05-06 14 13 12" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/6bb27964-f3d2-4539-bc5a-1f5ccd4dbc10">
+
+ただ、前述した分割ロードを導入することで、ファーストビューの範囲内に時間がかかって描画する要素がなくなったので改善されております。そのほかには特に改善すべきの指標がありません。
 
 <img width="334" alt="スクリーンショット 2024-05-06 10 02 57" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/bf891388-dc3b-4a36-be73-2bf2dbe242ec">
 
@@ -132,3 +134,8 @@ Dummy News Itemが3つあるので、コンポーネントにしたいんです�
 
 <img width="331" alt="スクリーンショット 2024-05-06 14 00 18" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/4f60b97b-ebe3-4eb6-93ce-6014363cf602">
 
+### アクセシビリティ
+
+これはほんの少しのおまけ程度ですが、[Loading AnimationコンポーネントにScreen Reader用の要素](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedLoading.tsx#L11)を追加しておきました。CSSクラスは相変わらず[tailwind](https://tailwindcss.com/docs/screen-readers)からです。
+
+一応[テストケース](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedLoading.test.tsx#L21-L26)も追加しております。
