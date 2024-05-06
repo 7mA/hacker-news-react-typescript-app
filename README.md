@@ -82,7 +82,9 @@ Dummy News Itemが3つあるので、コンポーネントにしたいんです�
 
 なぜかというと、今回使うHacker News APIでは、News情報一覧みたいなAPIがなくて、News ID一覧APIとIDで引くNews詳細APIしかありません。
 
-初回ロードで100件を出すということは、少なくともID一覧APIを1回、詳細APIを100回叩く必要があります。これだけの回数でAPIを非同期で叩くことは、WEBアプリには災難的です。任意要件にもPerformance追求があるのをさておき、エンジニアとしても内容表示まで5秒以上待たされるシチュエーションは本能的に耐えられません。
+初回ロードで100件を出すということは、少なくともID一覧APIを1回、詳細APIを100回叩く必要があります。これだけの回数でAPIを非同期で叩くことは、WEBアプリには災難的です。任意要件にもPerformance追求があるのをさておき、エンジニアとしても内容表示まで数秒間待たされるシチュエーションは本能的に耐えられません。
+
+<img width="400" alt="スクリーンショット 2024-05-06 13 56 06" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/32acb6fb-85e8-4bd2-a726-533144dfa3b2">
 
 そもそも初回ロードの件数はファーストビューの2倍くらい（今回は20〜30件くらい）をカバーできればOKだと思うので、おそらく実務では一番近い道はPdMに「初回表示件数を減らせないかな」と相談することかと思うのですが・・今回は課題なので従うしかありません。
 
@@ -106,7 +108,7 @@ Dummy News Itemが3つあるので、コンポーネントにしたいんです�
 
 自分の開発環境はWeb Vitals計測ツールを利用しているので、今回に限らずにCore Web Vitalsの数字を常に目にします。
 
-今回会った一番大きなパフォーマンス課題はやはり詳細APIの呼び出しに時間がかかりすぎて、News List ItemのLCP (Largest Contentful Paint) が5000ms以上で大きすぎてユーザを待たされる問題でした。ただ、前述した分割ロードを導入することで、ファーストビューの範囲内に時間がかかって描画する要素がなくなったので改善されております。
+今回会った一番大きなパフォーマンス課題はやはり詳細APIの呼び出しに時間がかかりすぎて、News List ItemのLCP (Largest Contentful Paint) が過大になりうる問題でした。ただ、前述した分割ロードを導入することで、ファーストビューの範囲内に時間がかかって描画する要素がなくなったので改善されております。
 
 そのほかには特に改善すべきの指標がありません。
 
@@ -124,4 +126,9 @@ Dummy News Itemが3つあるので、コンポーネントにしたいんです�
 
 今回はInfinite scrollingを導入しているので、News Listが更新するたびに、Listコンポーネントだけではなく、その中のItemコンポーネントも再レンダリングされます。（Core Web Vitalsは特に悪い数値が出ていませんでしたが）初期描画の100件を含めて大勢のコンポーネントがしばしば再レンダリングすることは勿体無いです。
 
-これを回避すべく、ユニークなIDを持つItemコンポーネントにReact.memoを利用します。
+<img width="472" alt="スクリーンショット 2024-05-06 13 59 24" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/fd789eae-880a-40b7-8102-0e749d7001b2">
+
+これを回避すべく、ユニークなidを持つItemコンポーネントに[React.memo](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedItem.tsx#L9)を利用します。これによって親のListコンポーネントが再レンダリングしても、idが変わっていないItemコンポーネントは再レンダリングせずに済みます。
+
+<img width="331" alt="スクリーンショット 2024-05-06 14 00 18" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/4f60b97b-ebe3-4eb6-93ce-6014363cf602">
+
