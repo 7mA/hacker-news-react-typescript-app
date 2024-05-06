@@ -72,7 +72,7 @@ styled-componentsに関しては、CSS in JSは比較的に慣れていないの
 
 <img width="605" alt="スクリーンショット 2024-05-06 8 52 02" src="https://github.com/7mA/hacker-news-react-typescript-app/assets/22639121/c958da19-bb30-41a5-b024-f86aa427ab55">
 
-良くも悪くも自作したものなので、実はLoading Animationとして[コンポーネント](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedLoading.tsx)を作って、さらにその中のDummy News Itemはまた[子コンポーネント](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedLoadingItem.tsx)として作っていました。（大事なPulseエフェクトはtailwindから拝借しました）
+良くも悪くも自作したものなので、実はLoading Animationとして[コンポーネント](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedLoading.tsx)を作って、さらにその中のDummy News Itemはまた[子コンポーネント](https://github.com/7mA/hacker-news-react-typescript-app/blob/master/src/components/NewsFeedLoadingItem.tsx)として作っていました。（大事なPulseエフェクトは[tailwind](https://tailwindcss.com/docs/animation#pulse)から拝借しました）
 
 Dummy News Itemが3つあるので、コンポーネントにしたいんですよね・・でもやはり微妙な感じがするかもしれません。「自作をやめたらどうですか？」みたいな気持ちになりました。
 
@@ -122,6 +122,6 @@ Dummy News Itemが3つあるので、コンポーネントにしたいんです�
 
 ### メモ化の利用
 
-今回はInfinite scrollingを導入しているので、News Listが更新するたびに、Listコンポーネントだけではなく、その中のItemコンポーネントも再レンダリングされます。（Core Web Vitalsは特に悪い数値が出ていませんでしたが）初期描画の100件を含めて大勢のコンポーネントが再レンダリングすることは勿体無いです。
+今回はInfinite scrollingを導入しているので、News Listが更新するたびに、Listコンポーネントだけではなく、その中のItemコンポーネントも再レンダリングされます。（Core Web Vitalsは特に悪い数値が出ていませんでしたが）初期描画の100件を含めて大勢のコンポーネントがしばしば再レンダリングすることは勿体無いです。
 
-従って、
+これを回避すべく、ユニークなIDを持つItemコンポーネントにReact.memoを利用します。
